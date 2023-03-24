@@ -9,4 +9,20 @@ class HerosController < ApplicationController
         hero = Hero.find(params[:id])
         render json: hero, serializer: :HeroPowerSerializer  , : status: :created
     end
+    def destroy 
+        hero = find_hero
+        hero.destroy
+        head :no_content
+    end
+
+    private
+
+    def find_hero
+        Hero.find(params[:id])
+    end
+
+
+    def render_not_found_response
+        render json: { error: "Hero not found" }, status: :not_found
+    end
 end
