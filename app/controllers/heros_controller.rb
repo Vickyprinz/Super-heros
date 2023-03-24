@@ -5,4 +5,8 @@ class HerosController < ApplicationController
         heros = Hero.all 
         render json: heros, status: :created
     end
+    def show
+        hero = Hero.find(params[:id])
+        render json: hero,  status: :created
+    end
 end
